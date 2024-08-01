@@ -10,7 +10,7 @@ export default function GoogleButton() {
 
   const signInWithGoogle = async () => {
     // 'use server'
-    const supabase = createClient()
+    const supabase = await createClient()
 
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',

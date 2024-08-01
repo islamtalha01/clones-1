@@ -3,7 +3,7 @@
 import { createClient } from '../../utils/supabase/server'
 
 export async function logout() {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   // type-casting here for convenience
   // in practice, you should validate your inputs

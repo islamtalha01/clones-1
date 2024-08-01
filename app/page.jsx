@@ -1,14 +1,14 @@
 'use client'
 
-import { useDisclosure } from '@nextui-org/react'
-import LoginModel from '../components/LoginModel'
+// import { useDisclosure } from '@nextui-org/react'
+// import LoginModel from '../components/LoginModel'
 import Discover from './discover/page'
 
 // import DeployButton from "../components/DeployButton";
 // import AuthButton from "../components/AuthButton";
-import { createClient } from '../utils/supabase/server'
+// import { createClient } from '../utils/supabase/server'
 
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
+// const supabase = createClient()
 
 {
   /* <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
@@ -18,28 +18,23 @@ const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.
 }
 
 function Home() {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure()
+  // const { isOpen, onOpen, onOpenChange } = useDisclosure()
 
-  const canInitSupabaseClient = () => {
-    // This function is just for the interactive tutorial.
-    // Feel free to remove it once you have Supabase connected.
-    try {
-      createClient()
-      return true
-    } catch (e) {
-      return false
-    }
-  }
+  // const canInitSupabaseClient = () => {
+  //   // This function is just for the interactive tutorial.
+  //   // Feel free to remove it once you have Supabase connected.
+  //   try {
+  //     createClient()
+  //     return true
+  //   } catch (e) {
+  //     return false
+  //   }
+  // }
 
-  const isSupabaseConnected = canInitSupabaseClient()
+  // const isSupabaseConnected = canInitSupabaseClient()
 
   return (
     <>
-      <div className='text-white bg-black'>
-        {/* <Header onOpen={onOpen} onOpenChange={onOpenChange} /> */}
-        <LoginModel onOpen={onOpen} isOpen={isOpen} onOpenChange={onOpenChange} supabase={supabase} />
-      </div>
-
       <div className='flex flex-col my-[159px] mx-[365px] w-full'>
         <div className='flex flex-col justify-center items-center  w-full'>
           <Discover />

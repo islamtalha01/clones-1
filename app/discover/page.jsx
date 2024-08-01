@@ -1,0 +1,103 @@
+'use client'
+
+import React, { useEffect, useState } from 'react'
+import { Card, CardHeader, CardBody, Avatar, Divider, Chip, CardFooter, Link } from '@nextui-org/react'
+
+const cardsData = [
+  {
+    name: 'Zoey Lang',
+    username: '@zoeylang',
+    avatar: 'https://nextui.org/avatars/avatar-1.png',
+    description:
+      'Jamie Gold is an empathetic AI therapist dedicated to helping people navigate their mental health challenges with personalized support and insightful guidance. Through compassionate listening and tailored strategies, Jamie empowers individuals to achieve emotional well-being and resilience. He focuses on Trauma and Family conflict.',
+    link: 'https://github.com/nextui-org/nextui',
+    heading: 'Therapist AI',
+  },
+  {
+    name: 'Alex Doe',
+    username: '@alexdoe',
+    avatar: 'https://nextui.org/avatars/avatar-2.png',
+    description:
+      'Jamie Gold is an empathetic AI therapist dedicated to helping people navigate their mental health challenges with personalized support and insightful guidance. Through compassionate listening and tailored strategies, Jamie empowers individuals to achieve emotional well-being and resilience. He focuses on Trauma and Family conflict.',
+    link: 'https://github.com/nextui-org/nextui',
+    heading: 'Mentor AI',
+  },
+  {
+    name: 'Jane Smith',
+    username: '@janesmith',
+    avatar: 'https://nextui.org/avatars/avatar-3.png',
+    description:
+      'Jamie Gold is an empathetic AI therapist dedicated to helping people navigate their mental health challenges with personalized support and insightful guidance. Through compassionate listening and tailored strategies, Jamie empowers individuals to achieve emotional well-being and resilience. He focuses on Trauma and Family conflict.',
+    link: 'https://github.com/nextui-org/nextui',
+    heading: 'Friend AI',
+  },
+]
+
+const CardComponent = ({ card }) => {
+  const [isRoomFull, setIsRoomFull] = useState(false)
+
+  useEffect(() => {
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        'x-api-key': 'NWRjOTRjOTZjYTExNDk5MWIzNzllM2IxMzJjNjg1NTEtMTcyMTc5NjA0OA==',
+      },
+    }
+
+    fetch('https://api.heygen.com/v1/streaming.list', options)
+      .then((response) => response.json())
+      .then((response) => {
+        setIsRoomFull(response.data.sessions.length >= 3)
+      })
+      .catch((err) => console.error(err))
+  }, [])
+
+  return (
+    <Link href='/agent'>
+      {/* <a className="block w-[336px] h-[390px] no-underline"> */}
+      <Card className='w-[300px] h-[340px]'>
+        <CardHeader className='justify-between'>
+          <div className='flex gap-5'>
+            <Avatar isBordered radius='full' size='md' src={card.avatar} />
+            <div className='flex flex-col gap-1 items-start justify-center'>
+              <h4 className='text-small font-semibold leading-none text-default-600'>{card.name}</h4>
+              <h5 className='text-small tracking-tight text-default-400'>{card.username}</h5>
+            </div>
+          </div>
+        </CardHeader>
+        {/* <Divider /> */}
+
+        <CardBody>
+          <div className='pt-1 pb-2'>
+            <Chip radius='md'>Therapist</Chip>
+          </div>
+          <h1 className='text-lg font-bold'>{card.heading}</h1>
+          <p className='p-2 text-small'>{card.description}</p>
+        </CardBody>
+        <CardFooter className='p-0'>
+          {isRoomFull ? <div className='w-full text-center bg-red-500 py-3'>Room Full</div> : <></>}
+        </CardFooter>
+        <Divider />
+      </Card>
+      {/* </a> */}
+    </Link>
+  )
+}
+
+const Discover = () => {
+  return (
+    <div>
+      <div className=' m-4  text-3xl font-extrabold'>
+        AI Clones
+        <div className='flex gap-12 m-12'>
+          {cardsData.map((card, index) => (
+            <CardComponent key={index} card={card} />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Discover
